@@ -50,7 +50,7 @@ def delete_router():
 def router_detail(router_ip):
 
     routers = list(
-        db["interface_status"].find({"router_ip": router_ip}).sort("timestamp", -1)
+        db["interface_status"].find({"router_ip": router_ip}).sort("timestamp", -1).limit(5)
     )
     return render_template("router_detail.html", routers=routers, router_ip=router_ip)
 
