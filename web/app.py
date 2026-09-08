@@ -31,7 +31,8 @@ def add_router():
     password = request.form.get("password")
 
     if ip and username and password:
-        collection.insert_one({"ip": ip, "username": username, "password": password})
+        collection.insert_one({"ip": ip, "username": username, 
+                               "password": password})
 
     return redirect(url_for("main"))
 
@@ -50,9 +51,9 @@ def delete_router():
 def router_detail(router_ip):
 
     routers = list(
-        db["interface_status"].find({"router_ip": router_ip}).sort("timestamp", -1)
+        db["interface_status"].find({"router_ip": router_ip})
+        .sort("timestamp", -1)
     )
-
     return render_template("router_detail.html", routers=routers, router_ip=router_ip)
 
 
