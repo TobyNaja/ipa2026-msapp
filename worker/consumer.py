@@ -1,11 +1,10 @@
 import os, time, pika
 
+from callback import callback
+
 user = os.getenv("RABBITMQ_DEFAULT_USER")
 pwd  = os.getenv("RABBITMQ_DEFAULT_PASS")
 
-def callback(ch, method, props, body):
-    print(f"body: {body.decode()}")
-    time.sleep(3)
 
 def consume(host):
     for attempt in range(10):
@@ -29,7 +28,3 @@ def consume(host):
 
 if __name__=='__main__':
     consume("localhost")
-
-
-ipa2025-msapp/worker on  main [!?] via  v3.12.3 (venv) 
-❯ 

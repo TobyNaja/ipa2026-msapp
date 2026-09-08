@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Router Detail</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <h1>Router {{ router_ip }}</h1>
+
+  {% for router in routers %}
+
+  <h2>Timestamp: {{ router.timestamp }}</h2>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Interface</th>
+        <th>IP Address</th>
+        <th>Status</th>
+        <th>Protocol</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for interface in router.interfaces %}
+      <tr>
+        <td>{{ interface.interface }}</td>
+        <td>{{ interface.ip_address }}</td>
+        <td>{{ interface.status }}</td>
+        <td>{{ interface.proto }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+
+  <br>
+
+  {% endfor %}
+
+  <a href="{{ url_for('main') }}">Back</a>
+
+</body>
+
+</html>
